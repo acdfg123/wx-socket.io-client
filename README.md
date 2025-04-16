@@ -7,7 +7,7 @@ browserify ./src/wx-socket.io-client.js --standalone createWXSocketIOClient -o d
 
 直接把 wx-socket.io-client.js 拷贝到微信小程序开发目录下，只要是代码目录就行
 
-方法：
+使用方法：
 const connect =require('./wx-socket.io-client.js');
 const opts = {
   transports: ['websocket']
