@@ -1,7 +1,5 @@
-//const  { WebSocket } = require('engine.io-client');
-//const WebSocket = require('engine.io-client').WebSocket;
 const {WS} = require('engine.io-client/build/cjs/transports/websocket.js');
-console.info(`${formatDate()} WebSocket 类型 ${typeof WS} prototype: ${WS.prototype.name}`);
+
 // 生成时间： YYYY-MM-DD HH:mm:ss ssssss
 function formatDate() {
     const now = new Date();
@@ -12,7 +10,7 @@ function formatDate() {
 
 class wxWebSocket {
     constructor(uri, protocols, opts) {
-        //console.info(`${formatDate()} 创建： wxWebSocket protocols:${protocols}  opts:${JSON.stringify(opts)}`);
+ 
         this.onopen=() => {};
         this.onmessage=(res) => {};
         this.onclose=(res) => {};
@@ -36,19 +34,19 @@ class wxWebSocket {
             protocols: this.protocols,
             ...this.opts });
         this.socketTask.onOpen((res)=> {
-            console.info(`${formatDate()}  WebSocket 连接已打开`,res);
+            //console.info(`${formatDate()}  WebSocket 连接已打开`,res);
             this.onopen(res);
         });
         this.socketTask.onMessage((res)=> {
-            console.info(`${formatDate()}  WebSocket 接收到数据`,res);
+            //console.info(`${formatDate()}  WebSocket 接收到数据`,res);
             this.onmessage(res);
         });
         this.socketTask.onClose((res)=> {
-            console.info(`${formatDate()}  WebSocket 连接已关闭！`,res);
+            //console.info(`${formatDate()}  WebSocket 连接已关闭！`,res);
             this.onclose(res);
         });
         this.socketTask.onError((res)=> {
-            console.info(`${formatDate()}  WebSocket 发生错误：`, res);
+            //console.info(`${formatDate()}  WebSocket 发生错误：`, res);
             this.onerror(res);
         });
         this.send = (data)=>{

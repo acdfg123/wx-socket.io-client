@@ -1,17 +1,13 @@
 const { Manager } = require('socket.io-client');
-//const { Socket } = require('engine.io-client')
 const WXSocket = require('./wx-socket.js');
 const { on } = require('socket.io-client/build/cjs/on.js');
 const WxWebSocket  = require('./wx-websocket.engine.js');
-console.info(`WXSocket type: ${typeof WXSocket}  WxWebSocket type: ${typeof WxWebSocket}`)
 
 class WXManager extends Manager {
     constructor(url, options) {
         try{
             super(url, {
-                transports: ['websocket'],
                 forceBase64: true, // Base64 编码
-                query: { EIO: 4 },
                 autoConnect : true,
                 timeout: 20000,
                 reconnection: true,
@@ -85,7 +81,6 @@ class WXManager extends Manager {
     }
 
     onopen() {
-        console.info(`WXManager onopen`);
         super.onopen();
     }
 }

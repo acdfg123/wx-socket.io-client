@@ -1,5 +1,4 @@
 const { Socket } = require('engine.io-client')
-console.info(`SocketWithUpgrade 类型： ${typeof Socket}`)
 
 class WXSocket extends Socket {
     constructor(url, options) {
@@ -12,10 +11,8 @@ class WXSocket extends Socket {
         });
     }
     onOpen() {
-        console.info(`WXSocket 连接打开`);
         super.onOpen();
         this.emit('join','/');
-        //发送验证头 handshake 数据
     }
 
 }

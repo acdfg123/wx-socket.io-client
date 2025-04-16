@@ -5429,19 +5429,15 @@ exports.hasBinary = hasBinary;
 
 },{}],34:[function(require,module,exports){
 const { Manager } = require('socket.io-client');
-//const { Socket } = require('engine.io-client')
 const WXSocket = require('./wx-socket.js');
 const { on } = require('socket.io-client/build/cjs/on.js');
 const WxWebSocket  = require('./wx-websocket.engine.js');
-console.info(`WXSocket type: ${typeof WXSocket}  WxWebSocket type: ${typeof WxWebSocket}`)
 
 class WXManager extends Manager {
     constructor(url, options) {
         try{
             super(url, {
-                transports: ['websocket'],
                 forceBase64: true, // Base64 编码
-                query: { EIO: 4 },
                 autoConnect : true,
                 timeout: 20000,
                 reconnection: true,
@@ -5515,14 +5511,12 @@ class WXManager extends Manager {
     }
 
     onopen() {
-        console.info(`WXManager onopen`);
         super.onopen();
     }
 }
 module.exports = WXManager;
 },{"./wx-socket.js":35,"./wx-websocket.engine.js":36,"socket.io-client":26,"socket.io-client/build/cjs/on.js":28}],35:[function(require,module,exports){
 const { Socket } = require('engine.io-client')
-console.info(`SocketWithUpgrade 类型： ${typeof Socket}`)
 
 class WXSocket extends Socket {
     constructor(url, options) {
@@ -5535,10 +5529,8 @@ class WXSocket extends Socket {
         });
     }
     onOpen() {
-        console.info(`WXSocket 连接打开`);
         super.onOpen();
         this.emit('join','/');
-        //发送验证头 handshake 数据
     }
 
 }
@@ -5635,18 +5627,12 @@ class WxWebSocket extends  WS{
 module.exports = WxWebSocket;
 
 },{"engine.io-client/build/cjs/transports/websocket.js":16}],37:[function(require,module,exports){
-//const { Manager } = require('socket.io-client');
-//const WXSocket = require('./wxWebsocket');
 const WXManager = require('./Code/wx-manager.js');
 
 function connect(url, options){
   const manager = new WXManager(url, options);
   const socket = manager.socket('/',manager.opts);
-  //socket.on('connect',()=>{
-  //  console.info(`join`,'/');
-  //});
   return socket;
-  //return manager.engine;
 }
 
 module.exports = connect;
