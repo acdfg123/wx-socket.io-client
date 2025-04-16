@@ -21,3 +21,6 @@ socket.emit('test','测试文本')
 socket.on('test',(data)=>{
 	console.info(data)
 })
+
+//判断是否已经连接成功
+socket.connected
