@@ -5592,7 +5592,7 @@ class wxWebSocket {
             //打印堆栈
             //console.trace();
             this.socketTask.send(data);
-            console.info(`${formatDate()}  WebSocket 发送数据：`, data);
+            //console.info(`${formatDate()}  WebSocket 发送数据：`, data);
         }
         this.ws = this.socketTask;
     }
